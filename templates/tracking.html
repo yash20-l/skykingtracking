@@ -12,39 +12,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tracking Details</title>
+    <title>{{details.0.CNote}}</title>
 </head>
 <body>
-    <div class="container">
-        <h3 class="text-center py-4" style="font-family: poppins, sans-serif;">Tracking Details For {{details.0.CNote}}</h3>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Date - Time</th>
-                <th scope="col">Location</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><p style="font-size: 15px;">11/07/2022 - 10:41:46</p></td>
-                <td>PHASE II,CHANDIGARH</td>
-                <td><p style="font-size: 15px;">Out For Delivery, Area Name: MADYA MARG, Delivery Boy: DINESH 8728971990</p></td>
-              </tr>
-              <tr>
-
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="container-fluid">
+        <h3 class="text-center py-4 text-primary" style="font-family: poppins, sans-serif;">Tracking Details For {{details.0.CNote}}</h3>
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12">
+              <div class="white-box">
+                  <div class="table-responsive">
+                    {% if details%}
+                      <table class="table table-striped no-wrap">
+                          <thead>
+                              <tr>
+                                  <th class="border-top-0 text-success" style="font-size:15px;">Date - Time</th>
+                                  <th class="border-top-0 text-success" style="font-size:15px;">Location</th>
+                                  <th class="border-top-0 text-success" style="font-size:15px;">Status</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            
+                            {% for status in details %}
+                              <tr>
+                                  <td class="txt-oflo" style="font-size:15px;">{{status.DateTime}}</td>
+                                  <td class="txt-oflo" style="font-size:15px;">{{status.Location}}</td>
+                                  <td class="txt-oflo" style="font-size:15px;">{{status.Status}}</td>
+                              </tr>
+                              {% endfor %}
+                              
+                          </tbody>
+                      </table>
+                      {% else %}
+                              <h1 class="text-danger text-center">No Data Found. Please Check Your Tracking Number</h1>
+                      {% endif %}
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
 </body>
 </html>
