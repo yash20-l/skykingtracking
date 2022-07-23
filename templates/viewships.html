@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Shipments</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div style="display: flex; flex-direction: row-reverse; justify-content: center; align-items: center;">
+            <div class="headline">
+                <h1 class="text-center py-4 px-2">All Shipments</h1>
+            </div>
+            <div class="back px-2">
+                <a href="/">
+                    <h3>back</h3>
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table no-wrap">
+                <thead>
+                    <tr>
+                        <th class="border-top-0">#</th>
+                        <th class="border-top-0">Name</th>
+                        <th class="border-top-0">Status</th>
+                        <th class="border-top-0">Date</th>
+                        <th class="border-top-0">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for items in ships %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td class="txt-oflo">{{items.tcode}}</td>
+                        {% if items.status == 'delivered' %}
+                        <td class="text-success">{{items.status}}</td>
+                        {% else %}
+                        <td class="text-oflo">{{items.status|truncatechars:20}}</td>
+                        {% endif %}
+                        <td class="txt-oflo">{{items.date}}</td>
+                        <td><a href="/track?tcode={{items.tcode}}"><span class="text-primary">Track</span></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
